@@ -95,7 +95,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Contact
 Rehman
 Email: irontyagi4@gmail.com
-LinkedIn: Rehman
-
-Feel free to open an issue if you have any questions or suggestions!
-By following this structure, you ensure that your README provides a comprehensive guide to users and contributors, making your project more accessible and easier to use.
+Linkedin: Rehman Tyagi
