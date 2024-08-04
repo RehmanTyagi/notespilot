@@ -1,9 +1,24 @@
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const handleLogin = (data) => {
+    console.log(data);
+  };
+
   return (
     <main className='flex bg-default overflow-hidden items-center justify-center h-dvh p-6'>
-      <div className='flex flex-col gap-2 md:w-[500px] items-center w-full'>
+      <form
+        onSubmit={handleSubmit(handleLogin)}
+        className='flex flex-col gap-2 md:w-[500px] items-center w-full'
+      >
         <svg
           width='100'
           height='100'
@@ -21,21 +36,44 @@ const Login = () => {
         <p className='mb-5 text-sm text-dark'>
           to continue to your NotesPilot account.
         </p>
-        <Input className='mb-2' placeholder='Email Address' />
-        <Button className='w-full py-3'>Continue</Button>
+        {errors.email && (
+          <p className='text-xs self-end font-semibold text-red-500'>
+            {errors.email.message}
+          </p>
+        )}
+        <Input
+          {...register('email', { required: 'Email is required!' })}
+          className={`mb-2`}
+          placeholder='Email Address'
+        />
+        {errors.password && (
+          <p className='text-xs self-end font-semibold text-red-500'>
+            {errors.password.message}
+          </p>
+        )}
+        <Input
+          {...register('password', { required: 'password is required!' })}
+          className={`mb-2`}
+          placeholder='Password'
+        />
+        <Button
+          type='submit'
+          className='w-full py-3'
+          isDisabled={errors.email || errors.password}
+        >
+          Continue
+        </Button>
         <div className='flex items-center gap-1 mt-10 text-sm'>
           <p className='text-dark'>Don't have an account?</p>
-          <a href='#' className='text-primary font-bold'>
+          <Link to='/signup' className='text-primary font-bold'>
             Sign up
-          </a>
+          </Link>
         </div>
         <div className='flex items-center gap-1 text-sm'>
           <p className='text-dark'>Can't sign in?</p>
-          <a href='#' className='text-primary font-bold'>
-            Click here
-          </a>
+          <Link className='text-primary font-bold'>Click here</Link>
         </div>
-      </div>
+      </form>
     </main>
   );
 };
