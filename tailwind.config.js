@@ -4,8 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0ea47a',
+        primary: 'rgba(var(--primary-color))',
+        default: 'rgba(var(--text-light))',
+        dark: 'rgba(var(--text-dark))',
       },
+      backgroundColor: {
+        default: 'rgba(var(--background-color))',
+      }
     },
   },
   plugins: [],
