@@ -2,6 +2,8 @@ import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import * as Brand from '../constants/brandInfo';
+import Copyright from '../components/common/Copyright';
 
 const Signup = () => {
   const {
@@ -34,7 +36,7 @@ const Signup = () => {
             ></path>
           </svg>
           <h1 className='font-semibold text-3xl text-default'>
-            Join NotesPilot
+            Join {Brand.BRAND_NAME}
           </h1>
           <p className='mb-10 text-sm font-medium text-dark'>
             signup, create your study notes.
@@ -92,9 +94,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
-      <span className='text-center text-default p-4 leading-normal'>
-        © 2024 NotesPilot Platform. All rights reserved.
-      </span>
+      <Copyright />
     </main>
   );
 };

@@ -2,6 +2,8 @@ import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import * as Brand from '../constants/brandInfo';
+import Copyright from '../components/common/Copyright';
 
 const Login = () => {
   const {
@@ -17,7 +19,7 @@ const Login = () => {
     <main className='flex bg-default overflow-hidden items-center justify-center h-dvh p-6'>
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className='flex flex-col gap-2 md:w-[500px] items-center w-full'
+        className='flex flex-col gap-2 md:w-[450px] items-center w-full'
       >
         <svg
           width='100'
@@ -34,7 +36,7 @@ const Login = () => {
         </svg>
         <h1 className='font-semibold text-2xl text-default'>Sign in</h1>
         <p className='mb-5 text-sm text-dark'>
-          to continue to your NotesPilot account.
+          to continue to your {Brand.BRAND_NAME} account.
         </p>
         {errors.email && (
           <p className='text-xs self-end font-semibold text-red-500'>
