@@ -1,9 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import apiSlice from "./apiSlice";
+import alertSlice from "./alertSlice";
 
 const store = configureStore({
   reducer: {
-    // Reducers
-  }
-})
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    alert: alertSlice,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+});
 
-export default store; 
+export default store;

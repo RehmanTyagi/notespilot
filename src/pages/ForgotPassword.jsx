@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import * as Brand from '../constants/brandInfo';
 import Copyright from '../components/common/Copyright';
 
-const Login = () => {
+const ForgotPassword = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const handleLogin = (data) => {
+  const handleForgotPassword = (data) => {
     console.log(data);
   };
 
@@ -19,7 +19,7 @@ const Login = () => {
     <main className='bg-default grid grid-rows-[1fr,auto] h-dvh'>
       <div className='flex items-center p-6 justify-center'>
         <form
-          onSubmit={handleSubmit(handleLogin)}
+          onSubmit={handleSubmit(handleForgotPassword)}
           className='flex flex-col gap-2 md:w-[450px] items-center w-full'
         >
           <svg
@@ -35,9 +35,11 @@ const Login = () => {
               fill='#00A82D'
             ></path>
           </svg>
-          <h1 className='font-semibold text-2xl text-default'>Sign in</h1>
+          <h1 className='font-semibold text-2xl text-default'>
+            Reset Password
+          </h1>
           <p className='mb-5 text-sm text-dark'>
-            to continue to your {Brand.BRAND_NAME} account.
+            You will be received an email from {Brand.BRAND_NAME}.
           </p>
           {errors.email && (
             <p className='text-xs self-end font-semibold text-red-500'>
@@ -50,34 +52,19 @@ const Login = () => {
             placeholder='Email Address'
             type='email'
           />
-          {errors.password && (
-            <p className='text-xs self-end font-semibold text-red-500'>
-              {errors.password.message}
-            </p>
-          )}
-          <Input
-            {...register('password', { required: 'password is required!' })}
-            className={`mb-2`}
-            placeholder='Password'
-            type='password'
-          />
           <Button
             type='submit'
             className='w-full py-3'
-            isDisabled={errors.email || errors.password}
+            isDisabled={errors.email}
           >
-            Continue
+            Change Password
           </Button>
           <div className='flex items-center gap-1 mt-10 text-sm'>
-            <p className='text-dark'>Don't have an account?</p>
-            <Link to='/signup' className='text-primary font-bold'>
-              Sign up
-            </Link>
-          </div>
-          <div className='flex items-center gap-1 text-sm'>
-            <p className='text-dark'>Can't sign in?</p>
-            <Link to='/forget' className='text-primary font-bold'>
-              Click here
+            <Link
+              to='/login'
+              className='text-primary underline underline-offset-2 font-bold'
+            >
+              Go back to login
             </Link>
           </div>
         </form>
@@ -87,4 +74,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
