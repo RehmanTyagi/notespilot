@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 *,
 *::after,
 *::before {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -61,7 +61,7 @@
   --primary-dark: 11, 140, 100;
 
   /* Background colors */
-  --background-color:255, 255, 255;
+  --background-color: 241, 245, 249;
   --background-dark: 240, 240, 240;
   --background-light: 248, 248, 248;
 
@@ -77,21 +77,21 @@
 /* dark mode theme */
 .dark {
   /* Primary color */
-  --primary-color:14, 164, 122;
+  --primary-color: 14, 164, 122;
 
   /* Derived colors */
-  --primary-light:64, 211, 163;
+  --primary-light: 64, 211, 163;
   --primary-dark: 11, 140, 100;
 
   /* Background colors */
-  --background-color:55, 55, 55;
+  --background-color: 55, 55, 55;
   --background-dark: 13, 13, 13;
-  --background-light:30, 30, 30;
+  --background-light: 30, 30, 30;
 
   /* Text colors */
-  --text-color:224, 224, 224;
+  --text-color: 224, 224, 224;
   --text-light: 255, 255, 255;
-  --text-dark:192, 192, 192;
+  --text-dark: 192, 192, 192;
 
   /* Border colors */
   --border-color: 42, 42, 42;

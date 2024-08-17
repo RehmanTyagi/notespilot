@@ -9,6 +9,14 @@ import { useRegisterMutation } from "../store/authApiSlice";
 import { useState } from "react";
 import { setAlert } from "../store/alertSlice";
 import { useDispatch } from "react-redux";
+
+interface FormInputs {
+  email: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const Signup = () => {
   const [formSteps, setFormSteps] = useState(1);
   const [signup, { isLoading }] = useRegisterMutation();
@@ -16,20 +24,14 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
-    setError,
     getValues,
     formState: { errors },
-  } = useForm();
-
+  } = useForm<FormInputs>();
   const handleSignup = async () => {
-    const { email, password, confirmPassword, username } = getValues();
+    const { email, password, username } = getValues();
 
     if (formSteps === 1) {
       setFormSteps(2);
-      return;
-    }
-    if (password !== confirmPassword) {
-      setError("confirmPassword", { message: "passwords do not match" });
       return;
     }
 
@@ -40,7 +42,8 @@ const Signup = () => {
     };
 
     try {
-      await signup(signupData).unwrap();
+      const res = await signup(signupData).unwrap();
+      console.log(res);
       dispatch(
         setAlert({
           message: "Success!, verify your email to login.",
@@ -113,6 +116,8 @@ const Signup = () => {
               <Input
                 {...register("confirmPassword", {
                   required: "confirm password is required!",
+                  validate: (value) =>
+                    value === getValues("password") || "passwords do not match",
                 })}
                 className={`mb-2`}
                 placeholder="Confirm Password"
@@ -142,16 +147,26 @@ const Signup = () => {
             ))}
           <Button
             type="submit"
-            className="flex h-12 w-full items-center justify-center py-3"
-            isDisabled={errors.email || errors.password}
+            isDisabled={
+              !!errors.email ||
+              !!errors.password ||
+              !!errors.username ||
+              !!errors.confirmPassword
+            }
+            isLoading={isLoading}
           >
-            {isLoading ? <Spinner /> : "Continue"}
+            Continue
           </Button>
           <p className="mt-5 text-center text-[10px] font-medium text-default/80 md:text-xs">
             By creating an account, you consent to our{" "}
-            <Link className="font-semibold text-primary">Terms of Service</Link>{" "}
+            <Link to="" className="font-semibold text-primary">
+              Terms of Service
+            </Link>{" "}
             and confirm that you have received and understood our{" "}
-            <Link className="font-semibold text-primary">Privacy Policy</Link>.
+            <Link to="" className="font-semibold text-primary">
+              Privacy Policy
+            </Link>
+            .
           </p>
           <div className="mt-5 flex items-center gap-1 text-sm">
             <p className="text-dark">Already have an account?</p>
