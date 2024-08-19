@@ -6,13 +6,18 @@ export default {
     extend: {
       colors: {
         primary: 'rgba(var(--primary-color))',
-        default: 'rgba(var(--text-light))',
-        dark: 'rgba(var(--text-dark))',
+        dark: 'rgba(var(--text-color))',
+        light: 'rgba(var(--bg-color))',
+        'container-light': 'rgba(var(--container-bg-color))',
+      },
+      fontFamily:{
+        sans: ['"Roboto"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
       },
       backgroundColor: {
         default: 'rgba(var(--background-color))',
       },
     },
   },
+  darkMode: 'class',
   plugins: [],
 };

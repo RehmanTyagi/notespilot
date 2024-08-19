@@ -37,8 +37,7 @@ const Login = () => {
       navigate("/dashboard");
       dispatch(setAlert({ message: res.message, type: "success" }));
     } catch (error: any) {
-      console.log(error);
-      dispatch(setAlert({ errorHandler(error), type: "error" }));
+      dispatch(setAlert({ message: errorHandler(error), type: "error" }));
     }
   };
 

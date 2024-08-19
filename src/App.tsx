@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // pages
+import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -16,6 +17,14 @@ const App = () => {
     <Router>
       <Notification />
       <Routes>
+        <Route
+          index
+          element={
+            <PublicRoute>
+              <HomePage />
+            </PublicRoute>
+          }
+        />
         <Route
           path="dashboard"
           element={
