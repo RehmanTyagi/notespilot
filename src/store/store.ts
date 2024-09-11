@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import apiSlice from "./apiSlice";
-import alertSlice from "./alertSlice";
-import authSlice from "./authSlice";
+import alertReducer from "./alertSlice";
+import authReducer from "./authSlice";
+import filterReducer from "./filterSlice";
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-    alert: alertSlice,
-    auth: authSlice,
+    alert: alertReducer,
+    auth: authReducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

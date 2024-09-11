@@ -7,11 +7,13 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ConfirmEmail from "./pages/ConfirmEmail";
 import ResetPassword from "./pages/ResetPassword";
+import Dashboard from "./pages/Dashboard";
 
 // App component
 import Notification from "./components/Notification";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import Editor from "./components/Dashboard/Editor/Editor";
 const App = () => {
   return (
     <Router>
@@ -26,13 +28,16 @@ const App = () => {
           }
         />
         <Route
-          path="dashboard"
+          path="view"
           element={
             <ProtectedRoute>
-              <h1 className="bg-default">dashboard</h1>
+              <Dashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<Editor />} />
+          <Route path="note/:noteid" element={<Editor />} />
+        </Route>
         <Route
           path="login"
           element={

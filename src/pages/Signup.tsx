@@ -58,7 +58,7 @@ const Signup = () => {
   };
 
   return (
-    <main className="grid h-dvh grid-rows-[1fr,auto] bg-default">
+    <main className="grid h-dvh grid-rows-[1fr,auto] bg-light">
       <div className="flex items-center justify-center p-6">
         <form
           onSubmit={handleSubmit(handleSignup)}
@@ -77,7 +77,7 @@ const Signup = () => {
               fill="#00A82D"
             ></path>
           </svg>
-          <h1 className="text-3xl font-semibold text-default">
+          <h1 className="text-3xl font-semibold text-dark">
             Join {Brand.BRAND_NAME}
           </h1>
           <p className="mb-10 text-sm font-medium text-dark">
@@ -157,7 +157,7 @@ const Signup = () => {
           >
             Continue
           </Button>
-          <p className="mt-5 text-center text-[10px] font-medium text-default/80 md:text-xs">
+          <p className="mt-5 text-center text-[10px] font-medium text-dark/80 md:text-xs">
             By creating an account, you consent to our{" "}
             <Link to="" className="font-semibold text-primary">
               Terms of Service

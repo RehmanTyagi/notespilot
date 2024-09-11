@@ -36,7 +36,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <main className="grid h-dvh grid-rows-[1fr,auto] bg-default">
+    <main className="grid h-dvh grid-rows-[1fr,auto] bg-light">
       <div className="flex items-center justify-center p-6">
         <form
           onSubmit={handleSubmit(handleForgotPassword)}
@@ -55,9 +55,7 @@ const ForgotPassword = () => {
               fill="#00A82D"
             ></path>
           </svg>
-          <h1 className="text-2xl font-semibold text-default">
-            Reset Password
-          </h1>
+          <h1 className="text-2xl font-semibold text-dark">Reset Password</h1>
           <p className="mb-5 text-sm text-dark">
             You will be received an email from {Brand.BRAND_NAME}.
           </p>

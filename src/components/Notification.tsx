@@ -18,7 +18,7 @@ const Notification = () => {
 
   return (
     <div
-      className={`duration-400 fixed flex items-center justify-center transition-transform ${
+      className={`duration-400 fixed z-10 flex items-center justify-center transition-transform ${
         alert.message ? "translate-y-0" : "-translate-y-full"
       } ${alert.type === "error" ? "bg-red-500" : "bg-primary"} w-full p-1.5 text-center text-white`}
     >

@@ -9,7 +9,7 @@ type PublicRouteProps = {
 
 const PublicRoute: React.FC<PublicRouteProps> = ({ children }) => {
   const token = useSelector((state: RootState) => state.auth.userAuth);
-  return !token ? children : <Navigate to="/dashboard" />;
+  return !token ? children : <Navigate to="/view" />;
 };
 
 export default PublicRoute;

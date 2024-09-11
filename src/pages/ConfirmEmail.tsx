@@ -9,7 +9,7 @@ const ConfirmEmail = () => {
   const { data, isLoading, error } = useVerifyEmailQuery(token);
 
   return (
-    <div className="grid h-dvh place-items-center bg-default">
+    <div className="grid h-dvh place-items-center bg-light">
       <div className="grid h-52 w-4/5 place-items-center bg-white shadow-md md:h-2/3 md:w-2/4">
         {isLoading && <Spinner className="border-primary" />}
         {error && (

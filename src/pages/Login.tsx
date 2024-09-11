@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   return (
-    <main className="grid h-dvh grid-rows-[1fr,auto] bg-default">
+    <main className="grid h-dvh grid-rows-[1fr,auto] bg-light">
       <div className="flex items-center justify-center p-6">
         <form
           onSubmit={handleSubmit(handleLogin)}
@@ -61,7 +61,7 @@ const Login = () => {
               fill="#00A82D"
             ></path>
           </svg>
-          <h1 className="text-2xl font-semibold text-default">Sign in</h1>
+          <h1 className="text-2xl font-semibold text-dark">Sign in</h1>
           <p className="mb-5 text-sm text-dark">
             to continue to your {Brand.BRAND_NAME} account.
           </p>

@@ -47,7 +47,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <main className="grid h-dvh grid-rows-[1fr,auto] bg-default">
+    <main className="grid h-dvh grid-rows-[1fr,auto] bg-light">
       <div className="flex items-center justify-center p-6">
         <form
           onSubmit={handleSubmit(handleResetPassword)}
@@ -66,9 +66,7 @@ const ResetPassword = () => {
               fill="#00A82D"
             ></path>
           </svg>
-          <h1 className="text-2xl font-semibold text-default">
-            Set New Password
-          </h1>
+          <h1 className="text-2xl font-semibold text-dark">Set New Password</h1>
           <p className="mb-5 text-sm text-dark">
             passwords must match in order to set new password.
           </p>

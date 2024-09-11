@@ -1,0 +1,198 @@
+/* editor headings */
+.editor h1 {
+  font-size: 2.5rem !important; /* 48px */
+  font-weight: 700 !important; /* Bold */
+}
+
+.editor h2 {
+  font-size: 2rem !important; /* 40px */
+  font-weight: 700 !important; /* Bold */
+}
+
+.editor h3 {
+  font-size: 1.75rem !important; /* 32px */
+  font-weight: 600 !important; /* Semi-Bold */
+}
+
+.editor h4 {
+  font-size: 1.5rem !important; /* 28px */
+  font-weight: 600 !important; /* Semi-Bold */
+}
+
+.editor h5 {
+  font-size: 1rem !important; /* 24px */
+  font-weight: 500 !important; /* Medium */
+}
+
+.editor h6 {
+  font-size: 0.9rem !important; /* 20px */
+  font-weight: 500 !important; /* Medium */
+}
+
+/* for image extension */
+.tiptap-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.tiptap-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tiptap-image-resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: red;
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}
+
+.Editor__empty:first-child::before {
+  color: #adb5bd !important;
+  content: attr(data-placeholder) !important;
+  float: left !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+.Editor__placeholder::before {
+  color: #adb5bd !important;
+  content: attr(data-placeholder) !important;
+  float: left !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+.resize-handle {
+  display: none;
+  width: 10px;
+  height: 10px;
+  @apply absolute -bottom-1.5 -right-1.5 cursor-se-resize bg-primary;
+}
+.image-wrapper {
+  position: relative;
+  @apply border-2 border-transparent;
+}
+.image-wrapper:hover {
+  @apply border-spacing-2 border-primary;
+}
+
+.image-wrapper:hover .resize-handle {
+  display: block;
+}
+
+.image-wrapper:hover .align-image-menu {
+  display: flex;
+}
+.align-image-menu {
+  @apply absolute bottom-5 left-2/4 hidden -translate-x-2/4 gap-2 rounded bg-primary/30;
+}
+
+.align-image-button {
+  @apply relative rounded p-0.5 px-3 text-primary hover:bg-primary hover:text-white;
+}
+.align-image-button:first-child:hover::after {
+  content: "Align Image to left";
+  padding: 0.5rem;
+  border-radius: 10px;
+  @apply absolute bottom-full left-0 mb-1 w-max bg-black/60 text-xs text-white;
+}
+.align-image-button:nth-child(2):hover::after {
+  content: "Align Image to center";
+  padding: 0.5rem;
+  border-radius: 10px;
+  @apply absolute bottom-full left-0 mb-1 w-max bg-black/60 text-xs text-white;
+}
+.align-image-button:nth-child(3):hover::after {
+  content: "Align Image to right";
+  padding: 0.5rem;
+  border-radius: 10px;
+  @apply absolute bottom-full left-0 mb-1 w-max bg-black/60 text-xs text-white;
+}
+
+.bullet-list {
+  @apply list-disc pl-5;
+}
+.ordered-list {
+  @apply list-decimal pl-5;
+}
+
+.code-block {
+  @apply rounded bg-[#2E2B29] p-2 text-white;
+}
+
+pre {
+  background: var(--black);
+  border-radius: 0.5rem;
+  color: var(--white);
+  font-family: "JetBrainsMono", monospace;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+
+  code {
+    background: none;
+    color: inherit;
+    padding: 0;
+  }
+
+  /* Code styling */
+  .hljs-comment,
+  .hljs-quote {
+    color: #616161;
+  }
+
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-attribute,
+  .hljs-tag,
+  .hljs-name,
+  .hljs-regexp,
+  .hljs-link,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class {
+    color: #f98181;
+  }
+
+  .hljs-number,
+  .hljs-meta,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-params {
+    color: #fbbc88;
+  }
+
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #b9f18d;
+  }
+
+  .hljs-title,
+  .hljs-section {
+    color: #faf594;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag {
+    color: #70cff8;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: 700;
+  }
+}
+
+/* link */
+.external-link {
+  @apply cursor-pointer text-indigo-600 underline;
+}
