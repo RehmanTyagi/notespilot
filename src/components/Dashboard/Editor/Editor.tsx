@@ -1,7 +1,10 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import "./Editor.css";
 import { useEffect } from "react";
-import { useGetNoteQuery } from "../../../store/noteApiSlice";
+import {
+  useGetNoteMutation,
+  useUpdateNoteMutation,
+} from "../../../store/noteApiSlice";
 import { useParams } from "react-router-dom";
 
 // extensions
@@ -27,9 +30,8 @@ const lowlight = createLowlight(all);
 
 const NoteEditor = () => {
   const { noteid } = useParams<{ noteid: string }>();
-  const { data: note, isError, isLoading } = useGetNoteQuery(noteid || "");
-  console.log(note);
-
+  const [fetchNote, { data: note, isError, isLoading }] = useGetNoteMutation();
+  const [updateNote] = useUpdateNoteMutation();
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -90,17 +92,36 @@ const NoteEditor = () => {
         },
       }),
     ],
-    onUpdate: ({ editor }) => {
-      const content = editor.getHTML();
-      console.log(content);
+    async onUpdate(props) {
+      const content = props.editor.getHTML();
+      try {
+        if (content) {
+          const res = await updateNote({
+            id: noteid,
+            content: JSON.stringify(content), // JSON.stringify() is used to convert the content to a string,
+          });
+          console.log("Note updated successfully ", res);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
   useEffect(() => {
-    if (editor && note?.data?.content) {
-      editor.commands.setContent(note.data.content);
+    const fetchNoteData = async () => {
+      try {
+        const response = await fetchNote(noteid).unwrap();
+        editor?.commands.setContent(response.data.content);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (editor && noteid) {
+      fetchNoteData();
     }
-  }, [editor, note]);
+  }, [noteid, editor, fetchNote]);
 
   if (isLoading) {
     return (

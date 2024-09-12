@@ -28,8 +28,19 @@ const noteApiSlice = api.injectEndpoints({
       }),
       invalidatesTags: ["Notes"],
     }),
-    getNote: builder.query({
-      query: (id) => `/notes/${id}`,
+    getNote: builder.mutation({
+      query: (id) => ({
+        url: `/notes/${id}`,
+        method: "GET",
+      }),
+    }),
+    updateNote: builder.mutation({
+      query: (data) => ({
+        url: `/notes/${data?.id}`,
+        body: data.content,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Notes"], // invalidates the cache
     }),
     deleteNote: builder.mutation({
       query: (id) => ({
@@ -50,5 +61,9 @@ const noteApiSlice = api.injectEndpoints({
   }),
 });
 
-export const { useGetNotesQuery, useChatBotMutation, useGetNoteQuery } =
-  noteApiSlice;
+export const {
+  useGetNotesQuery,
+  useChatBotMutation,
+  useGetNoteMutation,
+  useUpdateNoteMutation,
+} = noteApiSlice;
