@@ -1,11 +1,11 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import "./Editor.css";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import {
-  useGetNoteMutation,
   useUpdateNoteMutation,
+  useGetNoteQuery,
 } from "../../../store/noteApiSlice";
-import { useParams } from "react-router-dom";
+import { debounce } from "../../../utils/debounce";
 
 // extensions
 import FontFamily from "@tiptap/extension-font-family";
@@ -21,17 +21,39 @@ import { Underline } from "./extensions/Underline";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { Color } from "@tiptap/extension-color";
 import { createLowlight, all } from "lowlight";
+import Link from "@tiptap/extension-link";
+
+// components
 import Header from "./Header";
 import Toolbar from "./Toolbar";
-import Link from "@tiptap/extension-link";
 import Spinner from "../../common/Spinner";
+import { useParams } from "react-router-dom";
+
+type noteParams = {
+  noteid: string;
+};
 
 const lowlight = createLowlight(all);
-
 const NoteEditor = () => {
-  const { noteid } = useParams<{ noteid: string }>();
-  const [fetchNote, { data: note, isError, isLoading }] = useGetNoteMutation();
   const [updateNote] = useUpdateNoteMutation();
+  const { noteid } = useParams<noteParams>();
+  const { data, isLoading, isError } = useGetNoteQuery(noteid);
+  const note = data?.note;
+  const debouncedUpdateNote = useCallback(
+    debounce(async (content: string) => {
+      try {
+        const res = await updateNote({
+          id: note?._id,
+          note: { content },
+        });
+        console.log("Note updated successfully ", res);
+      } catch (error) {
+        console.log(error);
+      }
+    }, 5000),
+    [note?._id],
+  );
+
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -92,36 +114,16 @@ const NoteEditor = () => {
         },
       }),
     ],
-    async onUpdate(props) {
+    onUpdate(props) {
       const content = props.editor.getHTML();
-      try {
-        if (content) {
-          const res = await updateNote({
-            id: noteid,
-            content: JSON.stringify(content), // JSON.stringify() is used to convert the content to a string,
-          });
-          console.log("Note updated successfully ", res);
-        }
-      } catch (error) {
-        console.log(error);
-      }
+      debouncedUpdateNote(content);
     },
   });
 
   useEffect(() => {
-    const fetchNoteData = async () => {
-      try {
-        const response = await fetchNote(noteid).unwrap();
-        editor?.commands.setContent(response.data.content);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (editor && noteid) {
-      fetchNoteData();
-    }
-  }, [noteid, editor, fetchNote]);
+    editor?.commands.setContent(note?.content || "");
+    editor?.commands.focus();
+  }, [note?.content, editor]);
 
   if (isLoading) {
     return (
@@ -140,7 +142,7 @@ const NoteEditor = () => {
       className="grid h-full scale-95 grid-rows-[auto,auto,1fr] rounded-lg border-2 border-gray-200 shadow-md"
       role="editor container"
     >
-      <Header note={note?.data || {}} />
+      <Header note={note || {}} />
       <Toolbar editor={editor} />
       <EditorContent className="overflow-y-scroll" editor={editor} />
     </div>

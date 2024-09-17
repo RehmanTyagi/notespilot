@@ -3,7 +3,7 @@ import * as URL from "../constants/endpointsURL";
 import { Note } from "@/types";
 
 interface responseData {
-  data: Note[];
+  results: Note[];
 }
 interface GetNotesQuery {
   query?: string;
@@ -20,6 +20,10 @@ const noteApiSlice = api.injectEndpoints({
       },
       providesTags: ["Notes"],
     }),
+    getNote: builder.query({
+      query: (id) => `${URL.GET_NOTES}/${id}`,
+      providesTags: ["Notes"],
+    }),
     addNote: builder.mutation({
       query: (note) => ({
         url: "/notes",
@@ -28,19 +32,13 @@ const noteApiSlice = api.injectEndpoints({
       }),
       invalidatesTags: ["Notes"],
     }),
-    getNote: builder.mutation({
-      query: (id) => ({
-        url: `/notes/${id}`,
-        method: "GET",
-      }),
-    }),
     updateNote: builder.mutation({
       query: (data) => ({
         url: `/notes/${data?.id}`,
-        body: data.content,
+        body: data?.note,
         method: "PUT",
       }),
-      invalidatesTags: ["Notes"], // invalidates the cache
+      invalidatesTags: ["Notes"],
     }),
     deleteNote: builder.mutation({
       query: (id) => ({
@@ -64,6 +62,8 @@ const noteApiSlice = api.injectEndpoints({
 export const {
   useGetNotesQuery,
   useChatBotMutation,
-  useGetNoteMutation,
   useUpdateNoteMutation,
+  useAddNoteMutation,
+  useDeleteNoteMutation,
+  useGetNoteQuery,
 } = noteApiSlice;

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   message: "",
   type: "",
-  alertExpires: 5000,
+  alertExpires: 1000,
 };
 
 const alertSlice = createSlice({
@@ -17,7 +17,7 @@ const alertSlice = createSlice({
     clearAlert(state) {
       state.message = "";
       state.type = "";
-      state.alertExpires = 5000;
+      state.alertExpires = 1000;
     },
   },
 });

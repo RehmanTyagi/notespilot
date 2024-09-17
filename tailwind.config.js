@@ -4,6 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      animation: {
+        reload: "spin 1s linear forwards",
+      },
       colors: {
         primary: "rgba(var(--primary-color))",
         dark: "rgba(var(--text-color))",

@@ -35,7 +35,10 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Editor />} />
+          <Route
+            index
+            element={<h1>Open note from side panel to edit or read.</h1>}
+          />
           <Route path="note/:noteid" element={<Editor />} />
         </Route>
         <Route
@@ -78,6 +81,7 @@ const App = () => {
             </PublicRoute>
           }
         />
+        <Route path="*" element={<h1>404 | Page Not Found</h1>} />
       </Routes>
     </Router>
   );

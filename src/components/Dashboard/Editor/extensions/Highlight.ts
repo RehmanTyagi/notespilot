@@ -10,7 +10,6 @@ export const Highlight = Mark.create({
         default: "yellow",
         parseHTML: (element) => element.style.backgroundColor,
         renderHTML: (attributes) => {
-          console.log(attributes);
           return {
             style: `background-color: ${attributes.color};`,
           };
@@ -19,9 +18,29 @@ export const Highlight = Mark.create({
     };
   },
 
-  // Define how your mark will be rendered in HTML
+  addGlobalAttributes() {
+    return [
+      {
+        types: ["textStyle"],
+        attributes: {
+          style: {
+            default: null,
+            parseHTML: (element) => element.style.backgroundColor || null,
+            renderHTML: (attributes) => {
+              if (!attributes.style) {
+                return {};
+              }
+              return {
+                style: `background-color: ${attributes.style}`,
+              };
+            },
+          },
+        },
+      },
+    ];
+  },
+
   renderHTML({ HTMLAttributes }) {
-    console.log(HTMLAttributes);
     return ["span", HTMLAttributes, 0];
   },
 

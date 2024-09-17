@@ -1,10 +1,10 @@
 import { FiSearch } from "react-icons/fi";
 import Input from "../common/Input";
 import Button from "../common/Button";
-import { IoClose, IoCreateSharp } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { useGetNotesQuery } from "../../store/noteApiSlice";
 import { formatDate } from "../../utils/formatDate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { FaRegFileAlt } from "react-icons/fa";
 import Spinner from "../common/Spinner";
@@ -12,8 +12,14 @@ import Note from "./Note";
 import { debounce } from "../../utils/debounce";
 import { RiArrowRightSLine } from "react-icons/ri";
 import Dropdown from "../common/Dropdown";
+import NewNote from "./NewNote";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentNote } from "../../store/currentNoteSlice";
 
 const LeftSidePanel = () => {
+  const { noteid } = useParams<{ noteid: string }>();
+  const dispatch = useDispatch();
   const [search, setSearch] = useState<string>("");
   const [filterByDate, setFilterByDate] = useState<string>("");
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
@@ -22,7 +28,7 @@ const LeftSidePanel = () => {
     query: search,
     filter: filterByDate ? formatDate(filterByDate) : filterByCategory || "",
   });
-  const notes = data?.data ?? [];
+  const notes = data?.results ?? [];
   const debouncedSearch = debounce((query: string) => {
     setSearch(query);
   }, 1000);
@@ -46,6 +52,14 @@ const LeftSidePanel = () => {
   const handleRefetch = () => {
     refetch();
   };
+
+  useEffect(() => {
+    const activeNote = notes.find((note) => note._id === noteid);
+    if (activeNote) {
+      dispatch(setCurrentNote(activeNote));
+    }
+  }, [noteid, notes, dispatch]);
+
   return (
     <div className="relative order-1 md:order-none">
       {/* close side bar btn */}
@@ -71,10 +85,7 @@ const LeftSidePanel = () => {
             placeholder="Search"
           />
         </div>
-        <Button type="button" className="mt-5 flex items-center gap-1.5">
-          <IoCreateSharp />
-          New Note
-        </Button>
+        <NewNote />
         <div className="mb-4 mt-5 flex items-center justify-between">
           <div className="flex items-center gap-0.5">
             <FaRegFileAlt />
@@ -101,7 +112,7 @@ const LeftSidePanel = () => {
                 placeholderText="filter by date"
                 className="border-none bg-transparent py-1.5 font-medium focus:!ring-0"
               />
-              {["Personal", "Work", "Archive"].map(
+              {["General", "Personal", "Work", "Archive"].map(
                 (category) =>
                   (
                     <div
@@ -133,13 +144,14 @@ const LeftSidePanel = () => {
           )}
           {notes &&
             notes.length > 0 &&
-            notes.map((note) => (
+            notes.map((note, index) => (
               <Note
-                key={note.title}
+                key={index}
                 title={note.title}
                 _id={note._id}
                 createdAt={note.createdAt}
                 updatedAt={note.updatedAt}
+                description={note.description}
               />
             ))}
           {notes.length === 0 && !isFetching && !isError && (

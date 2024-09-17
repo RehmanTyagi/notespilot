@@ -3,6 +3,7 @@ import apiSlice from "./apiSlice";
 import alertReducer from "./alertSlice";
 import authReducer from "./authSlice";
 import filterReducer from "./filterSlice";
+import currentNoteReducer from "./currentNoteSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,9 +11,12 @@ const store = configureStore({
     alert: alertReducer,
     auth: authReducer,
     filter: filterReducer,
+    currentNote: currentNoteReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
 });
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;

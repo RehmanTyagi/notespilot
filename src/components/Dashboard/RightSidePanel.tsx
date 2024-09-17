@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ChatBot from "./ChatBot/ChatBot";
-
 import { MdOutlineCategory, MdEdit } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa6";
+import { debounce } from "../../utils/debounce";
+import { useAppSelector } from "../../hooks/appStateSelector";
+import { useUpdateNoteMutation } from "../../store/noteApiSlice";
 
 import {
   LiaImage,
@@ -14,43 +16,44 @@ import {
 } from "react-icons/lia";
 
 const RightSidePanel = () => {
-  const [category, setChangeCategory] = React.useState("Personal");
-  const [categoryIsReadOnly, setCategoryIsReadOnly] = React.useState(true);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(true);
+  const { note } = useAppSelector((state) => state.currentNote);
+  const [category, setCategory] = useState("General");
+  const [categoryIsReadOnly, setCategoryIsReadOnly] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [updateNote] = useUpdateNoteMutation();
 
-  const handleChangeCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChangeCategory(e.target.value);
+  const handleChangeCategory = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    try {
+      const res = await updateNote({
+        id: note?._id,
+        note: { category: e.target.value },
+      });
+      console.log("Note updated successfully ", res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleEditCategory = () => {
-    setCategoryIsReadOnly(!categoryIsReadOnly);
-  };
+  useEffect(() => {
+    setCategory(note?.category || "General");
+  }, [note]);
 
-  const resizer = document.querySelector(".resizer");
-  const resizablePanel = document.querySelector(".resizable-panel");
-
-  const handlePanelResize = () => {
-    let startX: number;
-    let startWidth: number;
-  };
   return (
     <div className="relative flex h-full flex-col border-l-2">
-      {/* <div role="resizer" className="absolute h-full w-10 bg-red-400"></div> */}
       <div className="flex items-center gap-2 border-b-2 p-4">
         <MdOutlineCategory size={20} className="self-start" />
-        <div className="flex flex-col gap-1.5">
-          <input
-            onChange={handleChangeCategory}
-            type="text"
-            readOnly={categoryIsReadOnly}
-            value={category}
-            className="font-semibold outline-none"
-          />
-          <p className="flex gap-1 text-xs">
-            Last Saved:<span>21,Mar,2024 10:20PM</span>
-          </p>
-        </div>
-        <MdEdit onClick={handleEditCategory} className="ml-auto text-xl" />
+        <select
+          value={category}
+          className="flex-grow rounded-sm p-0.5 text-sm font-medium focus:outline-none"
+          onChange={handleChangeCategory}
+        >
+          <option>General</option>
+          <option>Work</option>
+          <option>Personal</option>
+          <option>Archive</option>
+        </select>
       </div>
       <div className="border-b-2">
         <div className="flex items-center justify-between p-2 px-4 text-sm font-bold">
