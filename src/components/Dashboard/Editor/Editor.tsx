@@ -77,7 +77,9 @@ const NoteEditor = () => {
       TextStyle,
       FontFamily,
       FontSize,
-      Image,
+      Image.configure({
+        allowBase64: true,
+      }),
       LineSpacing,
       Highlight,
       Underline,
@@ -122,7 +124,6 @@ const NoteEditor = () => {
 
   useEffect(() => {
     editor?.commands.setContent(note?.content || "");
-    editor?.commands.focus();
   }, [note?.content, editor]);
 
   if (isLoading) {

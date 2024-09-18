@@ -2,30 +2,25 @@ import { Image as TiptapImage } from "@tiptap/extension-image";
 
 // Define the custom Image extension
 export const Image = TiptapImage.extend({
+  name: "customImage",
   addAttributes() {
     return {
       src: {
         default: null,
         parseHTML: (element) => {
-          return {
-            src: element.getAttribute("src"),
-          };
+          return element.getAttribute("src");
         },
       },
       width: {
-        default: null,
+        default: "auto",
         parseHTML: (element) => {
-          return {
-            width: element.style.width,
-          };
+          return element.getAttribute("width");
         },
       },
       height: {
         default: 400,
         parseHTML: (element) => {
-          return {
-            height: element.style.height,
-          };
+          return element.getAttribute("height");
         },
       },
       align: {
@@ -36,6 +31,7 @@ export const Image = TiptapImage.extend({
 
   addNodeView() {
     return ({ node, editor }) => {
+      console.log(node.attrs);
       const img = document.createElement("img");
       img.src = node.attrs.src;
       img.style.width = node.attrs.width + "px";

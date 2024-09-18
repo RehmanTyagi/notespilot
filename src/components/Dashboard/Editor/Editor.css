@@ -1,30 +1,36 @@
 /* editor headings */
 .editor h1 {
+  margin: 1rem 0;
   font-size: 2.5rem !important; /* 48px */
   font-weight: 700 !important; /* Bold */
 }
 
 .editor h2 {
+  margin: 1rem 0;
   font-size: 2rem !important; /* 40px */
   font-weight: 700 !important; /* Bold */
 }
 
 .editor h3 {
+  margin: 1rem 0;
   font-size: 1.75rem !important; /* 32px */
   font-weight: 600 !important; /* Semi-Bold */
 }
 
 .editor h4 {
+  margin: 1rem 0;
   font-size: 1.5rem !important; /* 28px */
   font-weight: 600 !important; /* Semi-Bold */
 }
 
 .editor h5 {
+  margin: 1rem 0;
   font-size: 1rem !important; /* 24px */
   font-weight: 500 !important; /* Medium */
 }
 
 .editor h6 {
+  margin: 1rem 0;
   font-size: 0.9rem !important; /* 20px */
   font-weight: 500 !important; /* Medium */
 }

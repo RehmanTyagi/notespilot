@@ -112,7 +112,7 @@ const LeftSidePanel = () => {
                 placeholderText="filter by date"
                 className="border-none bg-transparent py-1.5 font-medium focus:!ring-0"
               />
-              {["General", "Personal", "Work", "Archive"].map(
+              {["General", "Personal", "Work", "Archive", "Study"].map(
                 (category) =>
                   (
                     <div

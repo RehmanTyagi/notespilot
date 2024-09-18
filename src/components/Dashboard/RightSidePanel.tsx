@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatBot from "./ChatBot/ChatBot";
-import { MdOutlineCategory, MdEdit } from "react-icons/md";
+import { MdOutlineCategory } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa6";
-import { debounce } from "../../utils/debounce";
 import { useAppSelector } from "../../hooks/appStateSelector";
 import { useUpdateNoteMutation } from "../../store/noteApiSlice";
+import { countElement } from "../../utils/countElement";
 
 import {
   LiaImage,
@@ -18,7 +18,6 @@ import {
 const RightSidePanel = () => {
   const { note } = useAppSelector((state) => state.currentNote);
   const [category, setCategory] = useState("General");
-  const [categoryIsReadOnly, setCategoryIsReadOnly] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [updateNote] = useUpdateNoteMutation();
 
@@ -53,6 +52,7 @@ const RightSidePanel = () => {
           <option>Work</option>
           <option>Personal</option>
           <option>Archive</option>
+          <option>Study</option>
         </select>
       </div>
       <div className="border-b-2">
@@ -69,7 +69,9 @@ const RightSidePanel = () => {
             <div className="flex flex-col gap-5 p-5">
               <div className="flex items-center gap-4">
                 <LiaImage size={20} />
-                <p className="text-sm font-medium">100 photos</p>
+                <p className="text-sm font-medium">
+                  {note ? countElement(note.content, "img") : "0"} img
+                </p>
               </div>
               <div className="flex items-center gap-4">
                 <LiaLinkSolid size={20} />
