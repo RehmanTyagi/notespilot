@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
-import { clearAlert } from "../store/alertSlice";
+import { clearAlert } from "../../store/alertSlice";
 import { useDispatch } from "react-redux";
-import { AlertState } from "./StateInterface";
+import { AlertState } from "../StateInterface";
 const Notification = () => {
   const dispatch = useDispatch();
   const alert = useSelector((state: AlertState) => state.alert);

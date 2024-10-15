@@ -31,7 +31,6 @@ export const Image = TiptapImage.extend({
 
   addNodeView() {
     return ({ node, editor }) => {
-      console.log(node.attrs);
       const img = document.createElement("img");
       img.src = node.attrs.src;
       img.style.width = node.attrs.width + "px";

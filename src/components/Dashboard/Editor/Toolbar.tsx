@@ -20,7 +20,7 @@ interface ToolbarProps {
 
 const Toolbar: React.FC<ToolbarProps> = ({ editor }) => {
   return (
-    <div className="flex items-center border-y-2 p-1 text-xs">
+    <div className="flex items-center justify-center border-y-2 p-1 text-xs">
       <Undo editor={editor} />
       <Redo editor={editor} />
       <Heading editor={editor} />

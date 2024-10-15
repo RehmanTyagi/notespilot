@@ -47,3 +47,5 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
 } = authApiSlice;
+
+export default authApiSlice;

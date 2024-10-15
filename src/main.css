@@ -7,6 +7,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .dark-bg {
+    @apply bg-slate-700 text-gray-300;
+  }
+}
+
 /* Global styles and custom themes */
 *,
 *::after,
@@ -43,7 +49,7 @@ input[type="number"] {
 
   /* background color */
   --bg-color: 255, 255, 255;
-  --container-bg-color: 255, 250, 229;
+  --container-bg-color: 260, 260, 260;
 }
 
 /* dark mode theme */
@@ -52,27 +58,11 @@ input[type="number"] {
   --primary-color: 14, 164, 122;
 
   /* text color */
-  --text-color: 255, 255, 255;
+  --text-color: 148, 163, 184;
 
   /* background color */
   --bg-color: 45, 45, 45;
   --container-bg-color: 0, 0, 0;
-}
-
-/* hero section */
-.shape {
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
 }
 
 /* date picker */
@@ -106,4 +96,7 @@ input[type="number"] {
 .react-datepicker {
   border: none !important;
   width: 100% !important;
+}
+.react-datepicker-wrapper {
+  display: none !important;
 }

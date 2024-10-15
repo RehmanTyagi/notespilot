@@ -6,13 +6,14 @@ import {
   useUpdateNoteMutation,
 } from "../../../store/noteApiSlice";
 import Dropdown from "../../common/Dropdown";
-import { MdDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../../common/Spinner";
 import { setAlert } from "../../../store/alertSlice";
 import { useDispatch } from "react-redux";
 import Input from "../../common/Input";
 import { debounce } from "../../../utils/debounce";
+import Button from "../../common/Button";
+import { MdOutlineDelete } from "react-icons/md";
+
 interface HeaderProps {
   note: Partial<Note>;
 }
@@ -78,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ note }) => {
       <div className="flex flex-grow flex-col gap-1">
         <Input
           data-type="title"
-          className="border-none !p-0 text-xl font-semibold"
+          className="border-none bg-transparent !p-0.5 text-xl font-semibold"
           value={TitleAndDescription.title}
           onChange={handleChange}
           type="text"
@@ -86,31 +87,28 @@ const Header: React.FC<HeaderProps> = ({ note }) => {
         />
         <Input
           data-type="description"
-          className="border-none !p-0 text-xs font-bold text-dark/50 md:text-base"
+          className="text-dark/50 border-none bg-transparent !p-0.5 !text-sm font-medium md:text-base"
           value={TitleAndDescription.description}
           onChange={handleChange}
           type="text"
           placeholder="Note Description"
         />
       </div>
-      <div className="flex h-fit gap-4 text-dark">
+      <div className="text-dark flex h-fit gap-4">
         <Dropdown>
           <Dropdown.DropdownButton isIcon={false}>
             <SlOptionsVertical className="relative top-[1.5px] cursor-pointer" />
           </Dropdown.DropdownButton>
           <Dropdown.DropdownMenu className="right-0 !p-0">
-            <div
+            <Button
+              isLoading={isLoading}
               onClick={handleDelete}
-              className="flex cursor-pointer items-center gap-1 p-1 text-sm hover:bg-gray-100"
+              type="button"
+              className="gap-1 border-none"
             >
-              {isLoading ? (
-                <Spinner className="!h-6 !w-6" />
-              ) : (
-                <>
-                  <MdDeleteOutline size={20} /> Delete
-                </>
-              )}
-            </div>
+              <MdOutlineDelete size={18} />
+              <span>Delete</span>
+            </Button>
           </Dropdown.DropdownMenu>
         </Dropdown>
       </div>

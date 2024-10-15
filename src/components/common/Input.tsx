@@ -6,16 +6,21 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   value?: string;
+  disabled?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ placeholder, type, onChange, value, className, ...rest }, ref) => {
+  (
+    { placeholder, type, disabled, onChange, value, className, ...rest },
+    ref,
+  ) => {
     return (
       <input
         {...rest}
         ref={ref}
         value={value}
-        className={`${className} w-full rounded border border-gray-300 p-3 text-sm placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-400`}
+        disabled={disabled}
+        className={`${className} w-full rounded border-2 p-3 text-sm placeholder:text-gray-500 focus:border-primary focus:outline-none dark:bg-transparent`}
         placeholder={placeholder}
         type={type}
         onChange={onChange}

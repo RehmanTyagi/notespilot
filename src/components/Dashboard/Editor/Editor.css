@@ -35,6 +35,28 @@
   font-weight: 500 !important; /* Medium */
 }
 
+html.dark .editor h1 {
+  color: #d1d5db !important;
+}
+html.dark .editor h2 {
+  color: #d1d5db !important;
+}
+html.dark .editor h3 {
+  color: #d1d5db !important;
+}
+html.dark .editor h4 {
+  color: #d1d5db !important;
+}
+html.dark .editor h5 {
+  color: #d1d5db !important;
+}
+html.dark .editor h6 {
+  color: #d1d5db !important;
+}
+html.dark .editor p {
+  color: #d1d5db !important;
+}
+
 /* for image extension */
 .tiptap-image {
   display: block;

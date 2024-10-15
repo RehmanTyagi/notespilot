@@ -1,4 +1,4 @@
-export const formatDate = (date: string) => {
+export const formatDate = (date: string, time?: string) => {
   const newDate = new Date(date);
   const day = newDate.getDate().toString().padStart(2, "0");
   const month = newDate.toLocaleString("default", { month: "short" });
@@ -6,5 +6,8 @@ export const formatDate = (date: string) => {
 
   const hours = newDate.getHours();
 
-  return `${day},${month},${year} ${hours}:${newDate.getMinutes()}`;
+  if (time) {
+    return `${day},${month},${year} ${hours}:${newDate.getMinutes()}`;
+  }
+  return `${day},${month},${year}`;
 };

@@ -19,7 +19,7 @@ const Color: React.FC<ColorProps> = ({ editor, position }) => {
         </ToolBtn>
       </Dropdown.DropdownButton>
       <Dropdown.DropdownMenu
-        className={`${position} right-0 grid grid-cols-4 gap-1`}
+        className={`${position} right-0 top-12 grid grid-cols-4 gap-1`}
       >
         {colorPalette.map((color, index) => (
           <button

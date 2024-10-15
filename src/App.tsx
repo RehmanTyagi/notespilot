@@ -1,16 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // pages
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ConfirmEmail from "./pages/ConfirmEmail";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 
 // App component
-import Notification from "./components/Notification";
+import Notification from "./components/common/Notification";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import Editor from "./components/Dashboard/Editor/Editor";
@@ -37,9 +38,21 @@ const App = () => {
         >
           <Route
             index
-            element={<h1>Open note from side panel to edit or read.</h1>}
+            element={
+              <div className="grid h-full place-content-center">
+                <div className="flex flex-col gap-2">
+                  <h1 className="mt-10 text-5xl font-bold text-primary">
+                    Welcome to NotesPilot 🙏
+                  </h1>
+                  <p className="ml-2 text-sm text-black/50 dark:text-gray-300">
+                    Click on any note to view or edit from sidebar
+                  </p>
+                </div>
+              </div>
+            }
           />
           <Route path="note/:noteid" element={<Editor />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route
           path="login"

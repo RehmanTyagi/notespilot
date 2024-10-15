@@ -12,14 +12,12 @@ const Note: React.FC<NoteProps> = ({ title, _id: id, description }) => {
   return (
     <Link to={`note/${id}`}>
       <div
-        className={`${activeId === id ? "rounded-md bg-primary text-white" : ""} flex cursor-pointer items-center justify-between gap-1.5 border-b-2 p-4 ${activeId !== id ? "hover:bg-primary/10" : ""}`}
+        className={`${activeId === id ? "border-2 border-primary bg-primary/10 dark:!bg-slate-800" : ""} flex cursor-pointer flex-col gap-2 border-2 p-4 dark:border-slate-500 dark:bg-slate-600 dark:text-gray-300`}
       >
-        <div>
-          <h1 className="font-bold">{title ? title : "Untitled"}</h1>
-          <p className="text-xs">
-            {description ? description : "a brief description of the note"}
-          </p>
-        </div>
+        <h1 className="text-sm font-bold">{title ? title : "Untitled"}</h1>
+        <p className="text-xs">
+          {description ? description : "a brief description of the note"}
+        </p>
       </div>
     </Link>
   );

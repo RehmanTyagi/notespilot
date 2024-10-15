@@ -17,12 +17,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         onClick={onClick}
         disabled={isDisabled || isLoading}
-        className={`${className} ${
-          isDisabled && "cursor-not-allowed opacity-50"
-        } flex h-12 w-full items-center justify-center rounded bg-primary p-2 text-sm font-semibold text-white hover:bg-primary/80`}
+        className={`${className ? className : ""} ${
+          isDisabled ? "cursor-not-allowed opacity-50" : ""
+        } flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white`}
         type={type}
       >
-        {isLoading ? <Spinner /> : children}
+        {isLoading ? <Spinner className="border-white" /> : children}
       </button>
     );
   },

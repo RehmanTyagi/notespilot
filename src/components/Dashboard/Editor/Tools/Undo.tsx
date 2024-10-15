@@ -8,7 +8,7 @@ const Undo: React.FC<ToolProps> = ({ editor }) => {
     editor.chain().focus().undo().run();
   };
   return (
-    <ToolBtn tooltipMsg="Reverse" onClick={handleUndo}>
+    <ToolBtn tooltipMsg="Undo" onClick={handleUndo}>
       <MdOutlineUndo />
     </ToolBtn>
   );

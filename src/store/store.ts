@@ -4,6 +4,7 @@ import alertReducer from "./alertSlice";
 import authReducer from "./authSlice";
 import filterReducer from "./filterSlice";
 import currentNoteReducer from "./currentNoteSlice";
+import userReducer from "./userApiSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     auth: authReducer,
     filter: filterReducer,
     currentNote: currentNoteReducer,
+    user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

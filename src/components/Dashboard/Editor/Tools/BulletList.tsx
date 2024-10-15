@@ -19,7 +19,7 @@ const BulletList: React.FC<ToolProps> = ({ editor }) => {
         <Dropdown.DropdownButton>
           <MdOutlineFormatListBulleted />
         </Dropdown.DropdownButton>
-        <Dropdown.DropdownMenu>
+        <Dropdown.DropdownMenu className="top-12">
           <ToolBtn tooltipMsg="Unorder list" onClick={addBulletList}>
             <MdOutlineFormatListBulleted size={15} />
           </ToolBtn>

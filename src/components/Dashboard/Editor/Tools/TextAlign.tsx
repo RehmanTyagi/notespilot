@@ -27,7 +27,7 @@ const TextAlign: React.FC<ToolProps> = ({ editor }) => {
           {textAlign === "right" && <MdOutlineFormatAlignRight size={15} />}
           {textAlign === "justify" && <MdOutlineFormatAlignJustify size={15} />}
         </Dropdown.DropdownButton>
-        <Dropdown.DropdownMenu className="right-0 flex">
+        <Dropdown.DropdownMenu className="right-0 top-12 flex">
           {textAlignOptions.map((option) => (
             <div key={option} onClick={() => handleTextAlign(option)}>
               {option === "left" ? (

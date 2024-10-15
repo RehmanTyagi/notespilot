@@ -35,7 +35,7 @@ const Heading: React.FC<ToolProps> = ({ editor }) => {
       <Dropdown.DropdownButton iconSize={20}>
         <p>{headingLevel}</p>
       </Dropdown.DropdownButton>
-      <Dropdown.DropdownMenu className="left-0">
+      <Dropdown.DropdownMenu className="left-0 top-12">
         {headingLevels.map((level, idx) => (
           <ToolBtn
             key={idx}

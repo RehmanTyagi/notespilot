@@ -15,7 +15,7 @@ const LineSpacing: React.FC<ToolProps> = ({ editor }) => {
           <MdOutlineFormatLineSpacing size={15} />
         </ToolBtn>
       </Dropdown.DropdownButton>
-      <Dropdown.DropdownMenu>
+      <Dropdown.DropdownMenu className="top-12">
         <ToolBtn tooltipMsg="unit" onClick={() => handleLineSpacing("1.5")}>
           1.5
         </ToolBtn>

@@ -8,7 +8,7 @@ const Redo: React.FC<ToolProps> = ({ editor }) => {
     editor.chain().focus().redo().run();
   };
   return (
-    <ToolBtn tooltipMsg="Re-Apply" onClick={handleRedo}>
+    <ToolBtn tooltipMsg="Redo" onClick={handleRedo}>
       <MdOutlineRedo />
     </ToolBtn>
   );

@@ -33,7 +33,7 @@ const NewNote = () => {
       isDisabled={isLoading}
       isLoading={isLoading}
       type="button"
-      className="mt-5 flex items-center gap-1.5"
+      className="mt-5 flex items-center gap-1.5 border-none bg-primary text-white hover:bg-primary/90"
     >
       <IoCreateSharp />
       New Note

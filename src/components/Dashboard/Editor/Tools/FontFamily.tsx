@@ -58,7 +58,7 @@ const FontFamily: React.FC<ToolProps> = ({ editor }) => {
       <Dropdown.DropdownButton iconSize={20}>
         <p>{fontFamily}</p>
       </Dropdown.DropdownButton>
-      <Dropdown.DropdownMenu className="scrollbar-visible left-0 flex h-64 flex-col overflow-y-scroll">
+      <Dropdown.DropdownMenu className="scrollbar-visible left-0 top-12 flex h-64 flex-col overflow-y-scroll">
         {families.map((font, idx) => (
           <ToolBtn key={idx} onClick={() => handleFontChange(font)}>
             <p>{font}</p>

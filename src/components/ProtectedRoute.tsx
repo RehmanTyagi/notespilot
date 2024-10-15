@@ -9,7 +9,6 @@ type ProtectedRouteProps = {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const token = useSelector((state: RootState) => state.auth.userAuth);
-  // localStorage.clear();
 
   return token ? children : <Navigate to="/login" replace />;
 };

@@ -14,9 +14,9 @@ const authSlice = createSlice({
       state.userAuth = action.payload;
       localStorage.setItem("token", JSON.stringify(action.payload));
     },
-    logout: (state, action) => {
+    logout: (state) => {
       state.userAuth = null;
-      localStorage.clear();
+      localStorage.removeItem("token");
     },
   },
 });

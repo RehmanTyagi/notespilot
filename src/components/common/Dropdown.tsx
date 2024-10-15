@@ -111,7 +111,7 @@ const DropdownMenu: FC<DropdownMenuProps> = ({ children, className }) => {
     <div
       className={`${className ? className : ""} ${
         isOpen ? "block" : "hidden"
-      } absolute top-10 z-10 w-max rounded-md border-2 bg-light p-2 text-dark`}
+      } bg-light text-dark absolute z-10 w-max rounded-md border-2 bg-white p-2 dark:bg-slate-600`}
     >
       {children}
     </div>

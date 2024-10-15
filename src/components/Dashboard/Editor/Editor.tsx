@@ -128,20 +128,34 @@ const NoteEditor = () => {
 
   if (isLoading) {
     return (
-      <div className="grid place-content-center">
-        <Spinner />
+      <div className="grid h-full place-content-center">
+        <Spinner className="!h-28 !w-28" />
       </div>
     );
   }
 
   if (isError) {
-    return <div>Error...</div>;
+    return (
+      <div className="grid h-full place-content-center">
+        <div className="flex flex-col items-center gap-3 dark:text-gray-300">
+          <img
+            src="/vectors/not-found-note.svg"
+            className="h-72 w-72"
+            alt="vector"
+          />
+          <h1 className="text-2xl font-bold">Failed to load note 🌋</h1>
+          <p className="text-sm">
+            🛜 check your internet or wait for server response.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div
-      className="grid h-full scale-95 grid-rows-[auto,auto,1fr] rounded-lg border-2 border-gray-200 shadow-md"
-      role="editor container"
+      role="editor"
+      className="grid h-full grid-rows-[auto,auto,1fr] rounded-lg bg-white dark:bg-transparent dark:text-gray-300"
     >
       <Header note={note || {}} />
       <Toolbar editor={editor} />
