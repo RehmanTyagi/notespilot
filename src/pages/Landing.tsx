@@ -10,7 +10,7 @@ const Landing = () => {
   return (
     <>
       <div className="pointer-events-none fixed z-0 flex min-h-screen w-screen justify-center">
-        <div className="absolute inset-0 bg-[url('public/imgs/grid.svg')] opacity-25"></div>
+        <div className="absolute inset-0 bg-[url('assets/grid.svg')] opacity-25"></div>
         <img
           className="absolute top-32 z-10 h-[800px] scale-150 opacity-15 md:scale-100"
           src="imgs/mesh.svg"
