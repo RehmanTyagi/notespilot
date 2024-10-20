@@ -37,7 +37,7 @@ const lowlight = createLowlight(all);
 const NoteEditor = () => {
   const [updateNote] = useUpdateNoteMutation();
   const { noteid } = useParams<noteParams>();
-  const { data, isLoading, isError } = useGetNoteQuery(noteid);
+  const { data, isLoading, isError, isFetching } = useGetNoteQuery(noteid);
   const note = data?.note;
   const debouncedUpdateNote = useCallback(
     debounce(async (content: string) => {
@@ -126,7 +126,7 @@ const NoteEditor = () => {
     editor?.commands.setContent(note?.content || "");
   }, [note?.content, editor]);
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <div className="grid h-full place-content-center">
         <Spinner className="!h-28 !w-28" />
