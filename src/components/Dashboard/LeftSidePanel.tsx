@@ -121,7 +121,7 @@ const LeftSidePanel = () => {
             </Dropdown.DropdownMenu>
           </Dropdown>
         </div>
-        <div className="relative flex flex-grow flex-col gap-2 overflow-y-auto [mask-image:linear-gradient(to_bottom,transparent,gray_0%,gray_80%,transparent)]">
+        <div className="relative flex flex-grow flex-col gap-2 overflow-y-auto [mask-image:linear-gradient(to_bottom,transparent,white_0%,gray_95%,transparent)]">
           {isFetching && (
             <div className="grid h-full place-content-center">
               <Spinner className="!h-20 !w-20 border-primary" />

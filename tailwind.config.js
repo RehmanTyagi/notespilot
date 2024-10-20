@@ -43,6 +43,9 @@ export default {
         card: "0 4px 8px rgba(0, 0, 0, 0.05)", // Subtle shadow for note cards
         modal: "0 10px 25px rgba(0, 0, 0, 0.1)",
       },
+      backgroundImage: {
+        "gradient-to-c": "radial-gradient(var(--tw-gradient-stops))",
+      },
     },
   },
   plugins: [],
